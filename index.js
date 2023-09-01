@@ -24,7 +24,7 @@ main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect(process.env.DATABASE);
-  await console.log(`connected to db`);
+  await console.log(`connected to database`);
   //   let user = await User.create({
   //     name: "gobi",
   //     age: "29",
