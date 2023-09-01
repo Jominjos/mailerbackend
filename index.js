@@ -9,11 +9,12 @@ const User = require("./user");
 const nodemailer = require("nodemailer");
 app.use(bodyparser.json());
 
-app.use(
-  cors({
-    origin: "http://localhost:3000/",
-  })
-);
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // Replace '*' with the allowed origin
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
