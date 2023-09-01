@@ -11,6 +11,7 @@ app.use(bodyparser.json());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // Replace '*' with the allowed origin
+  res.header("Access-Control-Allow-Origin", "https://jodemailer.netlify.app/");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
