@@ -2,11 +2,18 @@ const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const app = express();
+const cors = require("cors");
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
 const User = require("./user");
 const nodemailer = require("nodemailer");
 app.use(bodyparser.json());
+
+app.use(
+  cors({
+    origin: "http://localhost:3000/",
+  })
+);
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
