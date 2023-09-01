@@ -85,7 +85,9 @@ async function main() {
       // await console.log(userData);
       (await (userData.length > 0))
         ? res.status(200).json(userData)
-        : res.status(200).json({ message: "No User FOund" });
+        : res
+            .status(200)
+            .json({ message: `No user found with name ${searchName}` });
     }
   });
   app.delete("/delete/:name", (req, res, next) => {
