@@ -9,12 +9,11 @@ const User = require("./user");
 const nodemailer = require("nodemailer");
 app.use(bodyparser.json());
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://jodemailer.netlify.app/");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
