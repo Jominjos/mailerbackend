@@ -52,6 +52,7 @@ async function main() {
   });
   app.post("/sendmail", (req, res, next) => {
     fetchUser();
+    let [mailSubject, mailContent] = [res.body.sub, res.body.content];
     async function fetchUser() {
       const dbdata = await User.find({}, { Email: 1, _id: 0 });
       let emailids = dbdata.map((d) => {
@@ -63,9 +64,9 @@ async function main() {
         const info = await transporter.sendMail({
           from: "nodemailer430@gmail.com", // sender address
           to: emailids, // list of receivers
-          subject: "Mail subject", // Subject line
-          text: "This is the text content of the mail", // plain text body
-          html: "<b>Hello world?</b>", // html body
+          subject: mailSubject, // Subject line
+          text: mailContent, // plain text body
+          //html: "<b>Hello world?</b>",
         });
 
         console.log("Message sent: %s", info.messageId);
