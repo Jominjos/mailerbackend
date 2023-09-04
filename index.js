@@ -52,13 +52,14 @@ async function main() {
   });
   app.post("/sendmail", (req, res, next) => {
     fetchUser();
+    console.log(req.body);
     let [mailSubject, mailContent] = [req.body.sub, req.body.content];
     async function fetchUser() {
       const dbdata = await User.find({}, { Email: 1, _id: 0 });
       let emailids = dbdata.map((d) => {
         return d.Email;
       });
-      res.json(emailids);
+      res.json(req.body);
       async function mailer() {
         // send mail with defined transport object
         const info = await transporter.sendMail({
