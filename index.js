@@ -52,7 +52,7 @@ async function main() {
   });
   app.post("/sendmail", (req, res, next) => {
     fetchUser();
-    let [mailSubject, mailContent] = [res.body.sub, res.body.content];
+    let [mailSubject, mailContent] = [req.body.sub, req.body.content];
     async function fetchUser() {
       const dbdata = await User.find({}, { Email: 1, _id: 0 });
       let emailids = dbdata.map((d) => {
