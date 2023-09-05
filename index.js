@@ -62,7 +62,7 @@ async function main() {
       let emailids = dbdata.map((d) => {
         return d.Email;
       });
-      res.json(req.body);
+
       async function mailer() {
         // send mail with defined transport object
         const info = await transporter.sendMail({
@@ -74,6 +74,7 @@ async function main() {
         });
 
         console.log("Message sent: %s", info.messageId);
+        res.json({ message: "Mail send Successfully" });
       }
 
       mailer().catch(console.error);
