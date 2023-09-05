@@ -108,7 +108,7 @@ async function main() {
     async function delByName() {
       const delData = await User.deleteMany({ name: deleteName });
       console.log(delData);
-      res.json(delData);
+      res.status(200).json(delData);
     }
   });
 }
